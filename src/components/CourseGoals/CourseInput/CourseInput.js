@@ -4,39 +4,34 @@ import styled from "styled-components";
 import Button from "../../UI/Button/Button";
 import "./CourseInput.css";
 
-const FormControl =styled.div`
-margin: 0.5rem 0;
+const FormControl = styled.div`
+  margin: 0.5rem 0;
 
-& label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 0.5rem;
-}
+  & label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
 
-& input {
-  display: block;
-  width: 100%;
-  border: 1px solid #ccc;
-  font: inherit;
-  line-height: 1.5rem;
-  padding: 0 0.25rem;
-}
+  & input {
+    display: block;
+    width: 100%;
+    border: 1px solid ${props => (props.invalid ? 'red' : #ccc)};
+    background: ${props => (props.invalid ? 'rgb(255, 168, 168)' : 'transparent')};
+    font: inherit;
+    line-height: 1.5rem;
+    padding: 0 0.25rem;
+  }
 
-& input:focus {
-  outline: none;
-  background: #ffe8d6;
-  border-color: #b5838d;
-}
+  & input:focus {
+    outline: none;
+    background: #ffe8d6;
+    border-color: #b5838d;
+  }
 
-&.invalid input {
-  border-color: red;
-  background: rgb(255, 168, 168);
-}
-
-&.invalid label {
-  color: red;
-}
-
+  &.invalid label {
+    color: red;
+  }
 `;
 
 const CourseInput = (props) => {
@@ -61,10 +56,10 @@ const CourseInput = (props) => {
 
   return (
     <form onSubmit={formSubmitHandler}>
-      <FormControl/>
+      <FormControl invalid={!isValid }>
         <label>Course Goal</label>
         <input type="text" onChange={goalInputChangeHandler} />
-      </div>
+      </FormControl>
       <Button type="submit">Add Goal</Button>
     </form>
   );
